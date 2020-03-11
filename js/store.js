@@ -77,16 +77,21 @@
 	Store.prototype.save = function (updateData, callback, id) {
 		var data = JSON.parse(localStorage[this._dbName]);
 		var todos = data.todos;
+		//creation array1 pour stocker les id existant
+		var array1 = [0];
 
 		callback = callback || function () {};
 
+		//on parcours le tableau TODOS et on push les id dans array1
+		todos.forEach(a=>{
+			array1.push(a.id);
+		})
+
 		// Generate an ID
 	    var newId = ""; 
-	    var charset = "0123456789";
-
-        for (var i = 0; i < 6; i++) {
-     		newId += charset.charAt(Math.floor(Math.random() * charset.length));
-		}
+	    //on utilise Math.max pour récuperer l'id le plus haut dans le tableau et on incrémente de 1 
+	   	newId = (Math.max(...array1)+1);
+		
 
 		// If an ID was actually given, find the item and update each property
 		if (id) {
@@ -105,8 +110,6 @@
 
     		// Assign an ID
 			updateData.id = parseInt(newId);
-    
-
 			todos.push(updateData);
 			localStorage[this._dbName] = JSON.stringify(data);
 			callback.call(this, [updateData]);
