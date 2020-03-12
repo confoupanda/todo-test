@@ -120,6 +120,8 @@
 	 */
 	Controller.prototype.editItemSave = function (id, title) {
 		var self = this;
+
+		title = title.trim();
 		//DELETE des boucles while qui ne servent à rien
 		if (title.length !== 0) {
 			self.model.update(id, {title: title}, function () {
