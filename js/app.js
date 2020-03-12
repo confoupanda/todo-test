@@ -1,3 +1,4 @@
+import {View} from "./view.js"
 /*global app, $on */
 (function () {
 	'use strict';
@@ -11,7 +12,7 @@
 		this.storage = new app.Store(name);
 		this.model = new app.Model(this.storage);
 		this.template = new app.Template();
-		this.view = new app.View(this.template);
+		this.view = new View(this.template);
 		this.controller = new app.Controller(this.model, this.view);
 	}
 

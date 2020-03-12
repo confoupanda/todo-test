@@ -1,8 +1,4 @@
-/*global qs, qsa, $on, $parent, $delegate */
-
-(function (window) {
-	'use strict';
-
+export class View{ //importer les $on etc...de helpers
 	/**
 	     * View that abstracts away the browser's DOM completely.
 	     * It has two simple entry points:
@@ -12,7 +8,7 @@
 	     *   - render(command, parameterObject)
 	     *     Renders the given command with the options
 	     */
-	function View(template) {
+	constructor(template) {
 		this.template = template;
 
 		this.ENTER_KEY = 13;
@@ -27,25 +23,25 @@
 		this.$newTodo = qs('.new-todo');
 	}
 
-	View.prototype._removeItem = function (id) {
+	_removeItem(id) {
 		var elem = qs('[data-id="' + id + '"]');
 
 		if (elem) {
 			this.$todoList.removeChild(elem);
 		}
-	};
+	}
 
-	View.prototype._clearCompletedButton = function (completedCount, visible) {
+	_clearCompletedButton(completedCount, visible) {
 		this.$clearCompleted.innerHTML = this.template.clearCompletedButton(completedCount);
 		this.$clearCompleted.style.display = visible ? 'block' : 'none';
-	};
+	}
 
-	View.prototype._setFilter = function (currentPage) {
+	_setFilter(currentPage) {
 		qs('.filters .selected').className = '';
 		qs('.filters [href="#/' + currentPage + '"]').className = 'selected';
-	};
+	}
 
-	View.prototype._elementComplete = function (id, completed) {
+	_elementComplete(id, completed) {
 		var listItem = qs('[data-id="' + id + '"]');
 
 		if (!listItem) {
@@ -56,9 +52,9 @@
 
 		// In case it was toggled from an event and not by clicking the checkbox
 		qs('input', listItem).checked = completed;
-	};
+	}
 
-	View.prototype._editItem = function (id, title) {
+	_editItem(id, title) {
 		var listItem = qs('[data-id="' + id + '"]');
 
 		if (!listItem) {
@@ -73,9 +69,9 @@
 		listItem.appendChild(input);
 		input.focus();
 		input.value = title;
-	};
+	}
 
-	View.prototype._editItemDone = function (id, title) {
+	_editItemDone(id, title) {
 		var listItem = qs('[data-id="' + id + '"]');
 
 		if (!listItem) {
@@ -90,9 +86,9 @@
 		qsa('label', listItem).forEach(function (label) {
 			label.textContent = title;
 		});
-	};
+	}
 
-	View.prototype.render = function (viewCmd, parameter) {
+	render(viewCmd, parameter) {
 		var self = this;
 		var viewCommands = {
 			showEntries: function () {
@@ -131,14 +127,14 @@
 		};
 
 		viewCommands[viewCmd]();
-	};
+	}
 
-	View.prototype._itemId = function (element) {
+	_itemId(element) {
 		var li = $parent(element, 'li');
 		return parseInt(li.dataset.id, 10);
-	};
+	}
 
-	View.prototype._bindItemEditDone = function (handler) {
+	_bindItemEditDone(handler) {
 		var self = this;
 		$delegate(self.$todoList, 'li .edit', 'blur', function () {
 			if (!this.dataset.iscanceled) {
@@ -156,9 +152,9 @@
 				this.blur();
 			}
 		});
-	};
+	}
 
-	View.prototype._bindItemEditCancel = function (handler) {
+	_bindItemEditCancel(handler) {
 		var self = this;
 		$delegate(self.$todoList, 'li .edit', 'keyup', function (event) {
 			if (event.keyCode === self.ESCAPE_KEY) {
@@ -168,9 +164,9 @@
 				handler({id: self._itemId(this)});
 			}
 		});
-	};
+	}
 
-	View.prototype.bind = function (event, handler) {
+	bind(event, handler) {
 		var self = this;
 		if (event === 'newTodo') {
 			$on(self.$newTodo, 'change', function () {
@@ -211,9 +207,5 @@
 		} else if (event === 'itemEditCancel') {
 			self._bindItemEditCancel(handler);
 		}
-	};
-
-	// Export to window
-	window.app = window.app || {};
-	window.app.View = View;
-}(window));
+	}
+}
