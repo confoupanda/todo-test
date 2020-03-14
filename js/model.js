@@ -1,13 +1,11 @@
-(function (window) {
-	'use strict';
-
+export class Model{
 	/**
 	 * Creates a new Model instance and hooks up the storage.
 	 *
 	 * @constructor
 	 * @param {object} storage A reference to the client side storage class
 	 */
-	function Model(storage) {
+	constructor(storage) {
 		this.storage = storage;
 	}
 
@@ -17,7 +15,7 @@
 	 * @param {string} [title] The title of the task
 	 * @param {function} [callback] The callback to fire after the model is created
 	 */
-	Model.prototype.create = function (title, callback) {
+	create(title, callback) {
 		title = title || '';
 		callback = callback || function () {};
 
@@ -27,7 +25,7 @@
 		};
 
 		this.storage.save(newItem, callback);
-	};
+	}
 
 	/**
 	 * Finds and returns a model in storage. If no query is given it'll simply
@@ -44,7 +42,7 @@
 	 * //Below will find a model with foo equalling bar and hello equalling world.
 	 * model.read({ foo: 'bar', hello: 'world' });
 	 */
-	Model.prototype.read = function (query, callback) {
+	read(query, callback) {
 		var queryType = typeof query;
 		callback = callback || function () {};
 
@@ -57,7 +55,7 @@
 		} else {
 			this.storage.find(query, callback);
 		}
-	};
+	}
 
 	/**
 	 * Updates a model by giving it an ID, data to update, and a callback to fire when
@@ -67,9 +65,9 @@
 	 * @param {object} data The properties to update and their new value
 	 * @param {function} callback The callback to fire when the update is complete.
 	 */
-	Model.prototype.update = function (id, data, callback) {
+	update(id, data, callback) {
 		this.storage.save(data, callback, id);
-	};
+	}
 
 	/**
 	 * Removes a model from storage
@@ -77,23 +75,23 @@
 	 * @param {number} id The ID of the model to remove
 	 * @param {function} callback The callback to fire when the removal is complete.
 	 */
-	Model.prototype.remove = function (id, callback) {
+	remove(id, callback) {
 		this.storage.remove(id, callback);
-	};
+	}
 
 	/**
 	 * WARNING: Will remove ALL data from storage.
 	 *
 	 * @param {function} callback The callback to fire when the storage is wiped.
 	 */
-	Model.prototype.removeAll = function (callback) {
+	removeAll(callback) {
 		this.storage.drop(callback);
-	};
+	}
 
 	/**
 	 * Returns a count of all todos
 	 */
-	Model.prototype.getCount = function (callback) {
+	getCount(callback) {
 		var todos = {
 			active: 0,
 			completed: 0,
@@ -112,9 +110,5 @@
 			});
 			callback(todos);
 		});
-	};
-
-	// Export to window
-	window.app = window.app || {};
-	window.app.Model = Model;
-})(window);
+	}
+}
