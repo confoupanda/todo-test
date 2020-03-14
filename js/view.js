@@ -1,3 +1,9 @@
+import {qs} from "./helpers.js"
+import {qsa} from "./helpers.js"
+import {$on} from "./helpers.js"
+import {$delegate} from "./helpers.js"
+import {$parent} from "./helpers.js"
+
 export class View{ //importer les $on etc...de helpers
 	/**
 	     * View that abstracts away the browser's DOM completely.

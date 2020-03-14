@@ -1,23 +1,21 @@
 /*global NodeList */
-(function (window) {
-	'use strict';
 
 	// Get element(s) by CSS selector:
-	window.qs = function (selector, scope) {
+	export function qs(selector, scope) {
 		return (scope || document).querySelector(selector);
-	};
-	window.qsa = function (selector, scope) {
+	}
+	export function qsa(selector, scope) {
 		return (scope || document).querySelectorAll(selector);
-	};
+	}
 
 	// addEventListener wrapper:
-	window.$on = function (target, type, callback, useCapture) {
+	export function $on(target, type, callback, useCapture) {
 		target.addEventListener(type, callback, !!useCapture);
-	};
+	}
 
 	// Attach a handler to event for all elements that match the selector,
 	// now or in the future, based on a root element
-	window.$delegate = function (target, selector, type, handler) {
+	export function $delegate(target, selector, type, handler) {
 		function dispatchEvent(event) {
 			var targetElement = event.target;
 			var potentialElements = window.qsa(selector, target);
@@ -31,22 +29,22 @@
 		// https://developer.mozilla.org/en-US/docs/Web/Events/blur
 		var useCapture = type === 'blur' || type === 'focus';
 
-		window.$on(target, type, dispatchEvent, useCapture);
-	};
+		$on(target, type, dispatchEvent, useCapture);
+	}
 
 	// Find the element's parent with the given tag name:
 	// $parent(qs('a'), 'div');
-	window.$parent = function (element, tagName) {
+	export function $parent(element, tagName) {
 		if (!element.parentNode) {
 			return;
 		}
 		if (element.parentNode.tagName.toLowerCase() === tagName.toLowerCase()) {
 			return element.parentNode;
 		}
-		return window.$parent(element.parentNode, tagName);
-	};
+		return $parent(element.parentNode, tagName);
+	}
 
 	// Allow for looping on nodes by chaining:
 	// qsa('.foo').forEach(function () {})
 	NodeList.prototype.forEach = Array.prototype.forEach;
-})(window);
+
