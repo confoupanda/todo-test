@@ -3,7 +3,7 @@ import {Controller} from "./controller.js"
 import {Model} from "./model.js"
 import {Store} from "./store.js"
 import {Template} from "./template.js"
-
+import {$on} from "./helpers.js"
 /*global app, $on */
 (function () {
 	'use strict';
