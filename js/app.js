@@ -5,9 +5,6 @@ import {Store} from "./store.js"
 import {Template} from "./template.js"
 import {$on} from "./helpers.js"
 /*global app, $on */
-(function () {
-	'use strict';
-
 	/**
 	 * Sets up a brand new Todo list.
 	 *
@@ -28,4 +25,4 @@ import {$on} from "./helpers.js"
 	}
 	$on(window, 'load', setView);
 	$on(window, 'hashchange', setView);
-})();
+
