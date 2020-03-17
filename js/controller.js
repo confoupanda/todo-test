@@ -1,3 +1,6 @@
+/**
+ * export class Controller to app.js
+ */
 export class Controller{
 	/**
 	 * Takes a model and view and acts as the controller between them

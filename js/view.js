@@ -1,9 +1,15 @@
+/**
+ * import all functions from helpers.js
+ */
 import {qs} from "./helpers.js"
 import {qsa} from "./helpers.js"
 import {$on} from "./helpers.js"
 import {$delegate} from "./helpers.js"
 import {$parent} from "./helpers.js"
 
+/**
+ * export class View to app.js
+ */
 export class View{ //importer les $on etc...de helpers
 	/**
 	     * View that abstracts away the browser's DOM completely.
@@ -29,6 +35,10 @@ export class View{ //importer les $on etc...de helpers
 		this.$newTodo = qs('.new-todo');
 	}
 
+	/**
+	 * 
+	 * @param {number} id The ID of the item you want to remove
+	 */
 	_removeItem(id) {
 		var elem = qs('[data-id="' + id + '"]');
 
@@ -37,6 +47,11 @@ export class View{ //importer les $on etc...de helpers
 		}
 	}
 
+	/**
+	 * 
+	 * @param {*} completedCount 
+	 * @param {*} visible 
+	 */
 	_clearCompletedButton(completedCount, visible) {
 		this.$clearCompleted.innerHTML = this.template.clearCompletedButton(completedCount);
 		this.$clearCompleted.style.display = visible ? 'block' : 'none';
@@ -47,6 +62,11 @@ export class View{ //importer les $on etc...de helpers
 		qs('.filters [href="#/' + currentPage + '"]').className = 'selected';
 	}
 
+	/**
+	 * 
+	 * @param {number} id The ID of the item you want to complete
+	 * @param {boolean} completed false or true
+	 */
 	_elementComplete(id, completed) {
 		var listItem = qs('[data-id="' + id + '"]');
 
@@ -60,6 +80,11 @@ export class View{ //importer les $on etc...de helpers
 		qs('input', listItem).checked = completed;
 	}
 
+	/**
+	 * 
+	 * @param {*} id The ID of the item you want to edit
+	 * @param {string} [title] The title of the task
+	 */
 	_editItem(id, title) {
 		var listItem = qs('[data-id="' + id + '"]');
 
@@ -77,6 +102,11 @@ export class View{ //importer les $on etc...de helpers
 		input.value = title;
 	}
 
+	/**
+	 * 
+	 * @param {*} id The ID of the item, where edit is done
+	 * @param {string} [title] The title of the task
+	 */
 	_editItemDone(id, title) {
 		var listItem = qs('[data-id="' + id + '"]');
 
@@ -135,6 +165,10 @@ export class View{ //importer les $on etc...de helpers
 		viewCommands[viewCmd]();
 	}
 
+	/**
+	 * 
+	 * @param {number} element number of the li element selected
+	 */
 	_itemId(element) {
 		var li = $parent(element, 'li');
 		return parseInt(li.dataset.id, 10);

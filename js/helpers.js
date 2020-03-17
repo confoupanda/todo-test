@@ -1,5 +1,11 @@
 /*global NodeList */
 
+/**
+ * export all functions to view.js and app.js
+ * 
+ * @param {string} selector the element selected
+ * @param {string} scope the element selected
+ */
 	// Get element(s) by CSS selector:
 	export function qs(selector, scope) {
 		return (scope || document).querySelector(selector);

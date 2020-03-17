@@ -1,4 +1,8 @@
 /*jshint laxbreak:true */
+
+/**
+ * export class Template to app.js
+ */
 export class Template{
 	
 	/**

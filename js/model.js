@@ -1,3 +1,6 @@
+/**
+ * export class Model to app.js
+ */
 export class Model{
 	/**
 	 * Creates a new Model instance and hooks up the storage.

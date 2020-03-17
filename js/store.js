@@ -1,4 +1,8 @@
 /*jshint eqeqeq:false */
+
+/**
+ * export class Store to app.js
+ */
 export class Store{
 	/**
 	 * Creates a new client side storage object and will create an empty
