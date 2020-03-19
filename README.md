@@ -31,4 +31,5 @@ command-line http server
 
 ## Authors
 * **Openclassrooms** - *Initial work* - (https://openclassrooms.com/)
+* **Julien aka Juju** - *Contributor*
 * **ConFouPanda** - *Contributor*
