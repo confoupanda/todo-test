@@ -8,6 +8,7 @@
     "jasmine-core": "^2.0.0"
   },
   "scripts": {
-    "serve": "http-server -o"
+    "serve": "http-server -o",
+    "test": "http-server -o ./test/SpecRunner.html"
   }
 }

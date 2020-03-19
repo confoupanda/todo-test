@@ -1,20 +1,32 @@
 /*global NodeList */
 
 /**
- * export all functions to view.js and app.js
+ * Get element by CSS selector:
  * 
- * @param {string} selector the element selected
- * @param {string} scope the element selected
+ * @param {string} selector CSS selector
+ * @param {string} scope the search root
  */
-	// Get element(s) by CSS selector:
 	export function qs(selector, scope) {
 		return (scope || document).querySelector(selector);
 	}
+
+/**
+ * Get elements by CSS selector:
+ * 
+ * @param {string} selector CSS selector
+ * @param {string} scope the search root
+ */
 	export function qsa(selector, scope) {
 		return (scope || document).querySelectorAll(selector);
 	}
 
-	// addEventListener wrapper:
+/**
+ * AddEvenListener Wrapper
+ * @param {HTMLElement} target 
+ * @param {String} type 
+ * @param {Function} callback Eventlistener
+ * @param {Boolean} useCapture 
+ */
 	export function $on(target, type, callback, useCapture) {
 		target.addEventListener(type, callback, !!useCapture);
 	}

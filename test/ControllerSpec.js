@@ -1,7 +1,7 @@
 /*global app, jasmine, describe, it, beforeEach, expect */
+import {Controller} from "../js/controller.js"
 
 describe('controller', function () {
-	'use strict';
 
 	var subject, model, view;
 
@@ -55,7 +55,7 @@ describe('controller', function () {
 	beforeEach(function () {
 		model = jasmine.createSpyObj('model', ['read', 'getCount', 'remove', 'create', 'update']);
 		view = createViewStub();
-		subject = new app.Controller(model, view);
+		subject = new Controller(model, view);
 	});
 
 	it('should show entries on start-up', function () {
@@ -74,7 +74,7 @@ describe('controller', function () {
 		});
 
 		it('should show all entries without "all" route', function () {
-			var todo = {title: 'my todo'};
+			var todo = {title: 'my todo',completed:false};
 			setUpModel([todo]);
 
 			subject.setView('#/');
