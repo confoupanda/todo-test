@@ -144,7 +144,7 @@ export class Store{
 	 *
 	 * @param {function} callback The callback to fire after dropping the data
 	 */
-	drop = function (callback) {
+	drop(callback) {
 		var data = {todos: []};
 		localStorage[this._dbName] = JSON.stringify(data);
 		callback.call(this, data.todos);

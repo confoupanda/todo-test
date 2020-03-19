@@ -72,7 +72,7 @@ export class Controller{
 	/**
 	 * Renders all active tasks
 	 */
-	showActive = function () {
+	showActive() {
 		var self = this;
 		self.model.read({ completed: false }, function (data) {
 			self.view.render('showEntries', data);
