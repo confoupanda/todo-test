@@ -1,15 +1,10 @@
 /*jshint laxbreak:true */
 
 /**
- * export class Template to app.js
+ * the Template sets up defaults for all the Template methods such as a default template
  */
 export class Template{
-	
-	/**
-	 * Sets up defaults for all the Template methods such as a default template
-	 *
-	 * @constructor
-	 */
+
 	constructor() {
 		this.defaultTemplate
 		=	'<li data-id="{{id}}" class="{{completed}}">'

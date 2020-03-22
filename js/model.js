@@ -1,9 +1,8 @@
 /**
- * export class Model to app.js
+ * Creates a new Model instance and hooks up the storage.
  */
 export class Model{
 	/**
-	 * Creates a new Model instance and hooks up the storage.
 	 *
 	 * @constructor
 	 * @param {object} storage A reference to the client side storage class

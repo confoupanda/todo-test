@@ -1,12 +1,11 @@
 /*jshint eqeqeq:false */
 
 /**
- * export class Store to app.js
+ * The Store creates a new client side storage object and will create an empty
+ * collection if no collection already exists.
  */
 export class Store{
 	/**
-	 * Creates a new client side storage object and will create an empty
-	 * collection if no collection already exists.
 	 *
 	 * @param {string} name The name of our DB we want to use
 	 * @param {function} callback Our fake DB uses callbacks because in

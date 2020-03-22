@@ -21,18 +21,25 @@
 	}
 
 /**
- * AddEvenListener Wrapper
- * @param {HTMLElement} target 
- * @param {String} type 
+ * AddEvenListener Wrapper,
+ * Used in View and App
+ * @param {HTMLElement} target html element
+ * @param {String} type the type of the listener ex: 'change' or 'click'
  * @param {Function} callback Eventlistener
- * @param {Boolean} useCapture 
+ * @param {object} useCapture the element taken from the callback
  */
 	export function $on(target, type, callback, useCapture) {
 		target.addEventListener(type, callback, !!useCapture);
 	}
 
-	// Attach a handler to event for all elements that match the selector,
-	// now or in the future, based on a root element
+/**
+ * Attach a handler to event for all elements that match the selector,
+ * now or in the future, based on a root element
+ * @param {HTMLElement} target html element
+ * @param {String} selector CSS selector
+ * @param {String} type the type of the listener
+ * @param {Function} handler a function executed if a condition is fulfilled in View
+ */
 	export function $delegate(target, selector, type, handler) {
 		function dispatchEvent(event) {
 			var targetElement = event.target;
@@ -50,8 +57,12 @@
 		$on(target, type, dispatchEvent, useCapture);
 	}
 
-	// Find the element's parent with the given tag name:
-	// $parent(qs('a'), 'div');
+	/**
+	 * Find the element's parent with the given tag name:
+	 * $parent(qs('a'), 'div');
+	 * @param {HTMLElement} element the element parent
+	 * @param {String} tagName tagName of the element
+	 */
 	export function $parent(element, tagName) {
 		if (!element.parentNode) {
 			return;

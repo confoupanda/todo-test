@@ -1,5 +1,5 @@
 /**
- * export class Controller to app.js
+ * The controller allows interaction between Model and View. 
  */
 export class Controller{
 	/**
@@ -50,7 +50,7 @@ export class Controller{
 	/**
 	 * Loads and initialises the view
 	 *
-	 * @param {string} '' | 'active' | 'completed'
+	 * @param {string} locationHash hash of the current page, can have the values  '' | 'active' | 'completed'
 	 */
 	setView(locationHash) {
 		var route = locationHash.split('/')[1];
@@ -70,7 +70,7 @@ export class Controller{
 	}
 
 	/**
-	 * Renders all active tasks
+	 * Renders all active tasks with parameter completed: false
 	 */
 	showActive() {
 		var self = this;
@@ -80,7 +80,7 @@ export class Controller{
 	}
 
 	/**
-	 * Renders all completed tasks
+	 * Renders all completed tasks with parameter completed: true
 	 */
 	showCompleted() {
 		var self = this;
@@ -92,6 +92,7 @@ export class Controller{
 	/**
 	 * An event to fire whenever you want to add an item. Simply pass in the event
 	 * object and it'll handle the DOM insertion and saving of the new item.
+	 * @param {string} title the content of the todo
 	 */
 	addItem(title) { //erreur de syntaxe 3 d au lieu de 2 empechait la fonction d'etre appelé 
 		var self = this;
@@ -106,8 +107,9 @@ export class Controller{
 		});
 	}
 
-	/*
+	/**
 	 * Triggers the item editing mode.
+	 * @param {number} id id of the model you want to edit
 	 */
 	editItem(id) {
 		var self = this;
@@ -116,8 +118,10 @@ export class Controller{
 		});
 	}
 
-	/*
+	/**
 	 * Finishes the item editing mode successfully.
+	 * @param {number} id the id of model you want to save
+	 * @param {string} title the content of the todo
 	 */
 	editItemSave(id, title) {
 		var self = this;
@@ -133,8 +137,9 @@ export class Controller{
 		}
 	}
 
-	/*
+	/**
 	 * Cancels the item editing mode.
+	 * @param {number} id the id of the model you want to do the cancel
 	 */
 	editItemCancel(id) {
 		var self = this;
@@ -147,8 +152,7 @@ export class Controller{
 	 * By giving it an ID it'll find the DOM element matching that ID,
 	 * remove it from the DOM and also remove it from storage.
 	 *
-	 * @param {number} id The ID of the item to remove from the DOM and
-	 * storage
+	 * @param {number} id The ID of the item to remove from the DOM and storage
 	 */
 	removeItem(id) {
 		var self = this;
@@ -204,6 +208,7 @@ export class Controller{
 	/**
 	 * Will toggle ALL checkboxes' on/off state and completeness of models.
 	 * Just pass in the event object.
+	 * @param {object} completed is a checkbox to validate the status of all state
 	 */
 	toggleAll(completed) {
 		var self = this;
@@ -256,6 +261,7 @@ export class Controller{
 
 	/**
 	 * Simply updates the filter nav's selected states
+	 * @param {string} currentPage the path of the current page.
 	 */
 	_updateFilterState(currentPage) {
 		// Store a reference to the active route, allowing us to re-filter todo
