@@ -1,4 +1,5 @@
 node_modules/
+docs/
 .DS_Store
 node_modules/todomvc-app-css
 !node_modules/todomvc-app-css/index.css
