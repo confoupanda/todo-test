@@ -1,6 +1,7 @@
 node_modules/
 docs/
 .DS_Store
+UserDoc.pdf
 node_modules/todomvc-app-css
 !node_modules/todomvc-app-css/index.css
 

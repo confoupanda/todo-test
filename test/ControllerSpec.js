@@ -97,6 +97,7 @@ describe('controller', function () {
 			subject.setView('#/active');
 
 			expect(model.read).toHaveBeenCalledWith({completed:false},jasmine.any(Function));
+			expect(view.render).toHaveBeenCalledWith('showEntries',jasmine.any(Array));
 		});
 
 		it('should show completed entries', function () {
@@ -107,6 +108,7 @@ describe('controller', function () {
 			subject.setView('#/completed');
 
 			expect(model.read).toHaveBeenCalledWith({completed:true},jasmine.any(Function));
+			expect(view.render).toHaveBeenCalledWith('showEntries',jasmine.any(Array));
 		});
 	});
 
