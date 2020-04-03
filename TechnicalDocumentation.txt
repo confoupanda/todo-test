@@ -1,0 +1,4 @@
+
+Technical documentation:
+
+if you want to read the technical documentation go to the "Docs" file and click on "index.html".
